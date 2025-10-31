@@ -1,0 +1,266 @@
+{
+  "model": "kimi-k2:1t-cloud",
+  "high_confidence_samples": [
+    {
+      "subject": "Prohlédněte si fakturu za Microsoft 365 Business Basic",
+      "sender": "Microsoft <microsoft-noreply@microsoft.com>",
+      "keyword_confidence": 70,
+      "llm_result": {
+        "is_subscription": true,
+        "confidence": 100,
+        "service_name": "Microsoft 365 Business Basic",
+        "amount": null,
+        "currency": null,
+        "subscription_type": null,
+        "reasoning": "Email je výslovně označen jako faktura za Microsoft 365 Business Basic a obsahuje odkazy na historii předplatného v Centru pro správu Microsoftu 365."
+      }
+    },
+    {
+      "subject": "Prohlédněte si fakturu za Microsoft 365 Business Basic",
+      "sender": "Microsoft <microsoft-noreply@microsoft.com>",
+      "keyword_confidence": 70,
+      "llm_result": {
+        "is_subscription": true,
+        "confidence": 100,
+        "service_name": "Microsoft 365 Business Basic",
+        "amount": null,
+        "currency": null,
+        "subscription_type": null,
+        "reasoning": "Email přímo uvádí „fakturu za Microsoft 365 Business Basic“ a obsahuje odkaz na „historii předplatného“, což jednoznačně signalizuje, že se týká předplatného."
+      }
+    },
+    {
+      "subject": "8,80 US$ Platba 8,80 US$ pro KLING AI nebyla úspěšná",
+      "sender": "KLING AI <failed-payments+acct_1PjFm92L6u5tI3uX@stripe.com>",
+      "keyword_confidence": 60,
+      "llm_result": {
+        "is_subscription": true,
+        "confidence": 100,
+        "service_name": "KLING AI",
+        "amount": 8.8,
+        "currency": "US$",
+        "subscription_type": null,
+        "reasoning": "Email explicitně uvádí 'vaše KLING AI předplatné' a odkazuje na obnovu neúspěšné platby pro toto předplatné."
+      }
+    },
+    {
+      "subject": "Google Workspace: Vaše faktura za doménu bressner.cz je k dispozici",
+      "sender": "Google Payments <payments-noreply@google.com>",
+      "keyword_confidence": 60,
+      "llm_result": {
+        "is_subscription": true,
+        "confidence": 100,
+        "service_name": "Google Workspace",
+        "amount": null,
+        "currency": null,
+        "subscription_type": "monthly",
+        "reasoning": "Email explicitně uvádí \"měsíční faktura za službu Google Workspace\" a zmiňuje \"ID účtu svého předplatného služby Google Workspace\", což přímo potvrzuje existenci předplatného."
+      }
+    },
+    {
+      "subject": "Google Workspace: Vaše faktura za doménu bressner.cz je k dispozici",
+      "sender": "Google Payments <payments-noreply@google.com>",
+      "keyword_confidence": 60,
+      "llm_result": {
+        "is_subscription": true,
+        "confidence": 95,
+        "service_name": "Google Workspace",
+        "amount": null,
+        "currency": null,
+        "subscription_type": "monthly",
+        "reasoning": "Email uvádí „Vaše měsíční faktura za službu Google Workspace“ a instruuje uživatele, jak spravovat „ID účtu svého předplatného služby Google Workspace“, což jednoznačně označuje pravidelně placené předplatné."
+      }
+    },
+    {
+      "subject": "Google Workspace: Vaše faktura za doménu bressner.cz je k dispozici",
+      "sender": "Google Payments <payments-noreply@google.com>",
+      "keyword_confidence": 60,
+      "llm_result": {
+        "is_subscription": true,
+        "confidence": 100,
+        "service_name": "Google Workspace",
+        "amount": null,
+        "currency": null,
+        "subscription_type": "monthly",
+        "reasoning": "Email obsahuje fakturu za 'měsíční službu Google Workspace', zmínku o automatickém účtování a odkaz na 'předplatné služby Google Workspace' v platebním účtu."
+      }
+    },
+    {
+      "subject": "Obnovení předplatného Další 1 TB cloudového úložiště Microsoft nebylo úspěšné",
+      "sender": "\"Microsoft\" <microsoft-noreply@microsoft.com>",
+      "keyword_confidence": 50,
+      "llm_result": {
+        "is_subscription": true,
+        "confidence": 95,
+        "service_name": "Další 1 TB cloudového úložiště Microsoft",
+        "amount": null,
+        "currency": null,
+        "subscription_type": null,
+        "reasoning": "Předmět i meta tag eventId explicitně zmiňují „předplatné“ a jeho obnovení, proto jde nepochybně o e-mail týkající se placeného předplatného Microsoft."
+      }
+    },
+    {
+      "subject": "Obnovení předplatného Další 1 TB cloudového úložiště Microsoft nebylo úspěšné",
+      "sender": "\"Microsoft\" <microsoft-noreply@microsoft.com>",
+      "keyword_confidence": 50,
+      "llm_result": {
+        "is_subscription": true,
+        "confidence": 100,
+        "service_name": "Další 1 TB cloudového úložiště Microsoft",
+        "amount": null,
+        "currency": null,
+        "subscription_type": null,
+        "reasoning": "Předmět i meta tag eventId obsahují explicitní zmínku o předplatném („předplatné“, „subscription-charge-failure“)."
+      }
+    },
+    {
+      "subject": "Your subscription for CHATBOT APP will be canceled",
+      "sender": "\"Chatbot App\" <help@paddle.com>",
+      "keyword_confidence": 40,
+      "llm_result": {
+        "is_subscription": true,
+        "confidence": 95,
+        "service_name": "CHATBOT APP",
+        "amount": null,
+        "currency": null,
+        "subscription_type": null,
+        "reasoning": "Předmět emailu explicitně uvádí 'Your subscription for CHATBOT APP will be canceled', což přímo indikuje, že se jedná o předplatné služby CHATBOT APP."
+      }
+    },
+    {
+      "subject": "Your subscription from CHATBOT APP has been updated",
+      "sender": "\"Chatbot App\" <help@paddle.com>",
+      "keyword_confidence": 40,
+      "llm_result": {
+        "is_subscription": true,
+        "confidence": 95,
+        "service_name": "CHATBOT APP",
+        "amount": null,
+        "currency": null,
+        "subscription_type": null,
+        "reasoning": "Předmět zprávy explicitně uvádí „Your subscription from CHATBOT APP has been updated“, což jasně potvrzuje existenci předplatného."
+      }
+    }
+  ],
+  "low_confidence_samples": [
+    {
+      "subject": "Informace o úhradě platby za službu Kuki",
+      "sender": "\"Kuki.cz\" <ahoj@kuki.cz>",
+      "keyword_confidence": 10,
+      "llm_result": {
+        "is_subscription": true,
+        "confidence": 100,
+        "service_name": "Kuki",
+        "amount": null,
+        "currency": null,
+        "subscription_type": null,
+        "reasoning": "Email výslovně uvádí 'služby předplaceny do 28. 5. 2025', což je přímý důkaz předplacené služby."
+      }
+    },
+    {
+      "subject": "OCR.SPACE Free OCR API: Please Confirm Subscription",
+      "sender": "\"OCR.space Free OCR API\" <team@ocr.space>",
+      "keyword_confidence": 10,
+      "llm_result": {
+        "is_subscription": true,
+        "confidence": 95,
+        "service_name": "OCR.SPACE Free OCR API",
+        "amount": null,
+        "currency": null,
+        "subscription_type": null,
+        "reasoning": "Předmět i titulek obsahují explicitní frázi 'Please Confirm Subscription', což je standardní potvrzovací krok při zakládání předplatného."
+      }
+    },
+    {
+      "subject": "Obnovení hesla v MojeID. / Password reset for MojeID.",
+      "sender": "<podpora@mojeid.cz>",
+      "keyword_confidence": 10,
+      "llm_result": {
+        "is_subscription": false,
+        "confidence": 100,
+        "reasoning": "Jedná se o notifikační email týkající se obnovení hesla do služby MojeID, neobsahuje žádnou zmínku o platbě ani o předplatném."
+      }
+    },
+    {
+      "subject": "Qalzy - Popular On Kickstarter",
+      "sender": "\"Backer-Update\" <newsletter@backerupdate.com>",
+      "keyword_confidence": 10,
+      "llm_result": {
+        "is_subscription": false,
+        "confidence": 95,
+        "reasoning": "Email propaguje nový Kickstarter projekt Qalzy (inteligentní váha) a výslovně uvádí „No Subscription“, tedy žádné předplatné. Neobsahuje žádné informace o placeném členství, obnově služby ani fakturačních údajích."
+      }
+    },
+    {
+      "subject": "“M. Puzik” mentioned by “Juha Koskenvuo”",
+      "sender": "\"Mentioned by Juha Koskenvuo\" <premium@academia-mail.com>",
+      "keyword_confidence": 10,
+      "llm_result": {
+        "is_subscription": false,
+        "confidence": 95,
+        "reasoning": "Email je oznámením o zmínce (mention) uživatele 'M. Puzik' od 'Juha Koskenvuo', pravděpodobně z akademické sítě Academia.edu. Neobsahuje žádné informace o platbě, částce, frekvenci nebo předplatném."
+      }
+    },
+    {
+      "subject": "Stvrzenka za vaši platbu příjemci Google Payment Irela...",
+      "sender": "\"PayPal\" <service@intl.paypal.com>",
+      "keyword_confidence": 10,
+      "llm_result": {
+        "is_subscription": false,
+        "confidence": 70,
+        "reasoning": "Email je pouze stvrzenka za jednorázovou platbu přes PayPal příjemci Google Payment Ireland. Neobsahuje žádné informace o opakované platbě, předplatném nebo frekvenci. Google Payment Ireland může zpracovávat i jednorázové nákupy v Google službách (např. Google Play)."
+      }
+    },
+    {
+      "subject": "FLASH SALE: Act Now To Save 40%  (Next 72 Hours Only}",
+      "sender": "\"Kate @ Pictory\" <kate@pictory.ai>",
+      "keyword_confidence": 10,
+      "llm_result": {
+        "is_subscription": true,
+        "confidence": 95,
+        "service_name": "Pictory",
+        "amount": null,
+        "currency": null,
+        "subscription_type": "yearly",
+        "reasoning": "Předmět i tělo emailu explicitně nabízí \"40% discount on any Pictory annual plan\", tedy slevu na roční předplatné služby Pictory."
+      }
+    },
+    {
+      "subject": "K vašemu účtu Microsoft se připojily nové aplikace.",
+      "sender": "Tým, který se stará o účty Microsoft<account-security-noreply@accountprotection.microsoft.com>",
+      "keyword_confidence": 10,
+      "llm_result": {
+        "is_subscription": false,
+        "confidence": 95,
+        "reasoning": "Email informuje o připojení nových aplikací k účtu Microsoft a přístupu k datům, neobsahuje žádnou zmínku o placeném předplatném, částce, frekvenci ani službě typu subscription."
+      }
+    },
+    {
+      "subject": "K vašemu účtu Microsoft se připojily nové aplikace.",
+      "sender": "Tým, který se stará o účty Microsoft<account-security-noreply@accountprotection.microsoft.com>",
+      "keyword_confidence": 10,
+      "llm_result": {
+        "is_subscription": false,
+        "confidence": 95,
+        "reasoning": "Email informuje o tom, že k účtu Microsoft se připojily nové aplikace – jde o bezpečnostní oznámení týkající se oprávnění aplikací, nikoli o zprávu o předplatném nebo jeho platbě."
+      }
+    },
+    {
+      "subject": "Kimblade X & 2 others - Ending Soon On Kickstarter",
+      "sender": "\"Backer-Update\" <newsletter@backerupdate.com>",
+      "keyword_confidence": 10,
+      "llm_result": {
+        "is_subscription": false,
+        "confidence": 95,
+        "reasoning": "Email je pouze upozornění na blížící se konec kampaně několika projektů na Kickstarter. Neobsahuje žádné informace o opakované platbě, předplatném, částce ani frekvenci – pouze vyzývá k podpoře projektů před vypršením kampaně."
+      }
+    }
+  ],
+  "statistics": {
+    "total_analyzed": 20,
+    "llm_agrees": 17,
+    "llm_disagrees": 3,
+    "llm_higher_confidence": 0,
+    "keyword_higher_confidence": 0
+  }
+}
