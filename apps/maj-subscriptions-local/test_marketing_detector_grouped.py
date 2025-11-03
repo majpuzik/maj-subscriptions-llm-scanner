@@ -717,7 +717,7 @@ def main():
 
     # Načíst emaily
     print("📧 Načítám emaily...")
-    emails = load_emails(5000)
+    emails = load_emails(20000)
     print(f"✓ Načteno {len(emails)} emailů")
     print()
 

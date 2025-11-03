@@ -67,6 +67,21 @@ class MarketingEmailDetector:
         r'while supplies last',
     ]
 
+    # Důležité notifikace (NOT marketing) - negative patterns
+    NOT_MARKETING_PATTERNS = [
+        r'\b(subscription renewal|renewing your subscription|will renew)\b',
+        r'\b(payment (confirmed|received|processed|successful))\b',
+        r'\b(invoice|receipt|order confirmation)\b',
+        r'\b(your order|order #\d+)\b',
+        r'\b(account notification|important (account )?update)\b',
+        r'\b(security alert|password reset|verify your account)\b',
+        r'\b(statement|transaction|billing summary)\b',
+        r'\b(obnov[aá] předplatn[éě]ho|potvrzení platby|faktura)\b',
+        r'\b(předplatn[éě]|subscription)\b',  # Standalone subscription/předplatné
+        r'\b(ukončení předplatn[éě]ho)\b',    # Subscription cancellation
+        r'\b(renewal order|order receipt)\b',  # Renewal receipts
+    ]
+
     def __init__(self):
         self.subject_regex = re.compile(
             '|'.join(self.MARKETING_SUBJECT_PATTERNS),
@@ -82,6 +97,10 @@ class MarketingEmailDetector:
         )
         self.body_regex = re.compile(
             '|'.join(self.MARKETING_BODY_PATTERNS),
+            re.IGNORECASE
+        )
+        self.not_marketing_regex = re.compile(
+            '|'.join(self.NOT_MARKETING_PATTERNS),
             re.IGNORECASE
         )
 
@@ -107,7 +126,17 @@ class MarketingEmailDetector:
         body = email_data.get('body', '')
         html_body = email_data.get('html_body', '')
 
-        # 0. Whitelist/Blacklist check (NEGARANTUJE ne-marketing!)
+        # Combined text for analysis
+        combined_text = f"{subject} {body} {html_body}".lower()
+
+        # 0. NOT-MARKETING check (důležité notifikace) - HIGHEST PRIORITY
+        not_marketing_matches = len(self.not_marketing_regex.findall(combined_text))
+        if not_marketing_matches > 0:
+            not_marketing_penalty = min(60, not_marketing_matches * 50)  # Silnější penalty!
+            score -= not_marketing_penalty
+            reasons.append(f"Important notification detected: {not_marketing_matches} indicators (invoice/receipt/renewal)")
+
+        # 1. Whitelist/Blacklist check (NEGARANTUJE ne-marketing!)
         # Whitelist = důležitý odesilatel, ALE musí se testovat na marketing markery
         # (včera faktura, zítra může být marketing)
         is_whitelisted_sender = False
@@ -149,7 +178,6 @@ class MarketingEmailDetector:
                 reasons.append(f"Marketing sender pattern: {from_matches[0]}")
 
         # 3. Unsubscribe link (30 bodů - silný indikátor)
-        combined_text = f"{body} {html_body}".lower()
         if self.unsubscribe_regex.search(combined_text):
             score += 30
             reasons.append("Unsubscribe link found")
