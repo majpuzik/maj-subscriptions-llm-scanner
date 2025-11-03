@@ -1,0 +1,45 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Person {
+  id        String   @id @default(uuid())
+  name      String
+  imageUrl  String   // cesta k uploaded obrázku
+  profileData String? // JSON s dodatečnými daty (více fotek, video frames, atd.)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  tryOns    TryOn[]
+}
+
+model Clothing {
+  id          String   @id @default(uuid())
+  name        String
+  category    String   // např. "tričko", "kalhoty", "boty", "doplňky"
+  imageUrl    String   // cesta k uploaded obrázku
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  tryOns      TryOn[]
+}
+
+model TryOn {
+  id         String   @id @default(uuid())
+  personId   String
+  clothingId String
+  resultUrl  String   // URL výsledného AI-generovaného obrázku
+  rotation   Int      @default(0) // úhel rotace pro 3D efekt
+  metadata   String?  // JSON s dodatečnými daty
+  createdAt  DateTime @default(now())
+
+  person     Person   @relation(fields: [personId], references: [id])
+  clothing   Clothing @relation(fields: [clothingId], references: [id])
+}
