@@ -1,0 +1,170 @@
+[
+  {
+    "domain": "mojedatovaschranka.cz",
+    "pattern": "@mojedatovaschranka.cz",
+    "category": "government",
+    "confidence": 100,
+    "reason": "Státní datová schránka",
+    "email_count": 0
+  },
+  {
+    "domain": "n26.com",
+    "pattern": "@n26.com",
+    "category": "bank",
+    "confidence": 100,
+    "reason": "Finanční instituce",
+    "email_count": 69
+  },
+  {
+    "domain": "stripe.com",
+    "pattern": "@stripe.com",
+    "category": "bank",
+    "confidence": 100,
+    "reason": "Finanční instituce",
+    "email_count": 26
+  },
+  {
+    "domain": "revolut.com",
+    "pattern": "@revolut.com",
+    "category": "bank",
+    "confidence": 100,
+    "reason": "Finanční instituce",
+    "email_count": 20
+  },
+  {
+    "domain": "emails.n26.com",
+    "pattern": "@emails.n26.com",
+    "category": "bank",
+    "confidence": 100,
+    "reason": "Finanční instituce",
+    "email_count": 14
+  },
+  {
+    "domain": "email.n26.com",
+    "pattern": "@email.n26.com",
+    "category": "bank",
+    "confidence": 100,
+    "reason": "Finanční instituce",
+    "email_count": 2
+  },
+  {
+    "domain": "intl.paypal.com",
+    "pattern": "@intl.paypal.com",
+    "category": "bank",
+    "confidence": 100,
+    "reason": "Finanční instituce",
+    "email_count": 1
+  },
+  {
+    "domain": "email.cnet.com",
+    "pattern": "@email.cnet.com",
+    "category": "utility",
+    "confidence": 95,
+    "reason": "Poskytovatel služeb (energie, telco, doprava)",
+    "email_count": 16
+  },
+  {
+    "domain": "echo24.cz",
+    "pattern": "@echo24.cz",
+    "category": "utility",
+    "confidence": 95,
+    "reason": "Poskytovatel služeb (energie, telco, doprava)",
+    "email_count": 12
+  },
+  {
+    "domain": "newsletter.alternate.de",
+    "pattern": "@newsletter.alternate.de",
+    "category": "utility",
+    "confidence": 95,
+    "reason": "Poskytovatel služeb (energie, telco, doprava)",
+    "email_count": 9
+  },
+  {
+    "domain": "chrono24.com",
+    "pattern": "@chrono24.com",
+    "category": "utility",
+    "confidence": 95,
+    "reason": "Poskytovatel služeb (energie, telco, doprava)",
+    "email_count": 7
+  },
+  {
+    "domain": "mail.gitlab.com",
+    "pattern": "@mail.gitlab.com",
+    "category": "utility",
+    "confidence": 95,
+    "reason": "Poskytovatel služeb (energie, telco, doprava)",
+    "email_count": 4
+  },
+  {
+    "domain": "autohaus-senger.de",
+    "pattern": "@autohaus-senger.de",
+    "category": "utility",
+    "confidence": 95,
+    "reason": "Poskytovatel služeb (energie, telco, doprava)",
+    "email_count": 2
+  },
+  {
+    "domain": "tm.openai.com",
+    "pattern": "@tm.openai.com",
+    "category": "tech",
+    "confidence": 90,
+    "reason": "Tech služba kterou pravidelně používáme",
+    "email_count": 80
+  },
+  {
+    "domain": "google.com",
+    "pattern": "@google.com",
+    "category": "tech",
+    "confidence": 90,
+    "reason": "Tech služba kterou pravidelně používáme",
+    "email_count": 52
+  },
+  {
+    "domain": "promomail.microsoft.com",
+    "pattern": "@promomail.microsoft.com",
+    "category": "tech",
+    "confidence": 90,
+    "reason": "Tech služba kterou pravidelně používáme",
+    "email_count": 25
+  },
+  {
+    "domain": "infoemails.microsoft.com",
+    "pattern": "@infoemails.microsoft.com",
+    "category": "tech",
+    "confidence": 90,
+    "reason": "Tech služba kterou pravidelně používáme",
+    "email_count": 16
+  },
+  {
+    "domain": "microsoft.com",
+    "pattern": "@microsoft.com",
+    "category": "tech",
+    "confidence": 90,
+    "reason": "Tech služba kterou pravidelně používáme",
+    "email_count": 15
+  },
+  {
+    "domain": "info.trading212.com",
+    "pattern": "@info.trading212.com",
+    "category": "tech",
+    "confidence": 90,
+    "reason": "Tech služba kterou pravidelně používáme",
+    "email_count": 12
+  },
+  {
+    "domain": "github.com",
+    "pattern": "@github.com",
+    "category": "tech",
+    "confidence": 90,
+    "reason": "Tech služba kterou pravidelně používáme",
+    "email_count": 12
+  },
+  {
+    "domain": "mail.thewhitebox.ai",
+    "pattern": "@mail.thewhitebox.ai",
+    "category": "tech",
+    "confidence": 90,
+    "reason": "Tech služba kterou pravidelně používáme",
+    "email_count": 10
+  }
+]
