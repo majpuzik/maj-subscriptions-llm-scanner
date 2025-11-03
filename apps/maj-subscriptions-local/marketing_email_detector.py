@@ -31,6 +31,9 @@ class MarketingEmailDetector:
         r'[🎁🎉💰🔥⚡🎯💎✨🌟⭐]',  # Marketing emoji
         r'\b(sleva|akce|zdarma|výprodej|nabídka)\b',
         r'\b(black friday|cyber monday|flash sale)\b',
+        r'\b(newsletter|daily digest|breaking news|news alert|weekly roundup)\b',  # Newslettery
+        r'\b(heute meistgelesen|meistgelesen|top stories|trending now)\b',  # News aggregators
+        r'\b(zpravodaj|přehled novinek|týdenní přehled)\b',  # České newslettery
     ]
 
     # Marketingové domény odesílatelů
@@ -159,7 +162,7 @@ class MarketingEmailDetector:
         # 1. Analýza předmětu (25 bodů)
         subject_matches = len(self.subject_regex.findall(subject))
         if subject_matches > 0:
-            subject_score = min(25, subject_matches * 8)
+            subject_score = min(25, subject_matches * 10)  # Zvýšeno z 8 na 10
             score += subject_score
             reasons.append(f"Marketing keywords in subject: {subject_matches}")
 
