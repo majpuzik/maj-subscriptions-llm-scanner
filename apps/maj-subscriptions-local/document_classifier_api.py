@@ -12,6 +12,13 @@ from flask import jsonify, request
 
 # Import standardizovaných modulů
 try:
+    from marketing_email_detector import MarketingEmailDetector
+    MARKETING_AVAILABLE = True
+except ImportError:
+    MARKETING_AVAILABLE = False
+    print("⚠ marketing_email_detector недоступен")
+
+try:
     from legal_doc_identifier import LegalDocumentIdentifier
     LEGAL_AVAILABLE = True
 except ImportError:
@@ -53,6 +60,7 @@ class UniversalDocumentClassifier:
     """
 
     def __init__(self):
+        self.marketing_detector = MarketingEmailDetector() if MARKETING_AVAILABLE else None
         self.legal_identifier = LegalDocumentIdentifier() if LEGAL_AVAILABLE else None
         self.receipt_analyzer = CzReceiptIntelligence() if RECEIPT_AVAILABLE else None
         self.bank_processor = BankStatementProcessor() if BANK_AVAILABLE else None
@@ -81,11 +89,57 @@ class UniversalDocumentClassifier:
                     'file_path': file_path
                 }
 
+        # 0. Marketing Email Detector (HIGHEST PRIORITY - runs FIRST!)
+        if self.marketing_detector and text_content:
+            try:
+                # Extract email metadata from text/filename
+                subject = Path(file_path).stem if file_path else ''
+                from_addr = ''
+
+                # Try to extract subject and from from text if it looks like email
+                lines = text_content.split('\n')[:10]  # First 10 lines
+                for line in lines:
+                    if line.startswith('Subject:'):
+                        subject = line.replace('Subject:', '').strip()
+                    elif line.startswith('From:'):
+                        from_addr = line.replace('From:', '').strip()
+
+                email_data = {
+                    'subject': subject,
+                    'from': from_addr,
+                    'body': text_content[:5000],  # First 5000 chars
+                    'html_body': ''
+                }
+
+                is_marketing, confidence, details = self.marketing_detector.analyze(email_data)
+
+                # If marketing detected with high confidence, SKIP other modules!
+                if is_marketing and confidence >= 40:
+                    return {
+                        'document_type': 'marketing_email',
+                        'confidence': confidence,
+                        'country': 'UNKNOWN',
+                        'version': '1.4',
+                        'paperless': {
+                            'tags': ['marketing', 'email', 'newsletter'],
+                            'custom_fields': {},
+                            'document_type_name': 'Marketing Email'
+                        },
+                        'metadata': {
+                            'classified_by': 'marketing_email_detector',
+                            'is_marketing': True,
+                            'marketing_details': details,
+                            'file_path': file_path
+                        }
+                    }
+            except Exception as e:
+                print(f"⚠ Marketing detector error: {e}")
+
         # 1. Legal Document Identifier
         if self.legal_identifier and text_content:
             try:
                 legal_result = self.legal_identifier.analyze_document(text_content)
-                if legal_result['confidence'] > 50:  # Порог уверенности
+                if legal_result['confidence'] > 70:  # Increased threshold to prevent false positives
                     results.append({
                         'module': 'legal_doc_identifier',
                         'module_version': legal_result['version'],
@@ -111,7 +165,7 @@ class UniversalDocumentClassifier:
         if self.bank_processor and file_path.endswith('.xml'):
             try:
                 bank_result = self.bank_processor.analyze_statement(file_path)
-                if bank_result['confidence'] > 50:
+                if bank_result['confidence'] > 70:  # Increased threshold to prevent false positives
                     results.append({
                         'module': 'bank_statement_processor',
                         'module_version': bank_result['version'],
