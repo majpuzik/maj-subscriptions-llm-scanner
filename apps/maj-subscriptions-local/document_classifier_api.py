@@ -113,8 +113,14 @@ class UniversalDocumentClassifier:
 
                 is_marketing, confidence, details = self.marketing_detector.analyze(email_data)
 
+                # DEBUG: Log what we're analyzing
+                print(f"DEBUG: Marketing detector - Subject: '{email_data['subject'][:80]}'")
+                print(f"DEBUG: Marketing detector - Confidence: {confidence}%, is_marketing: {is_marketing}")
+                print(f"DEBUG: Marketing detector - Reasons: {details.get('reasons', [])}")
+
                 # If marketing detected with high confidence, SKIP other modules!
-                if is_marketing and confidence >= 40:
+                # Threshold lowered to 25 for German marketing emails (2 keywords = 25-30 points)
+                if is_marketing and confidence >= 25:
                     return {
                         'document_type': 'marketing_email',
                         'confidence': confidence,

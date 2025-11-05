@@ -30,6 +30,9 @@ class MarketingEmailDetector:
         r'\b(\d+%\s*off|save\s*\$|get\s*\d+)\b',
         r'[🎁🎉💰🔥⚡🎯💎✨🌟⭐]',  # Marketing emoji
         r'\b(sleva|akce|zdarma|výprodej|nabídka)\b',
+        r'\b(deal|deals|schnäppchen|angebot|angebote|rabatt)\b',  # Německý marketing
+        r'\b(kostenlos|gratis|gratisversand|bordguthaben)\b',  # Německé promo
+        r'\b(traumstart|traumsommer|traumurlaub|last-minute)\b',  # Německé cestování
         r'\b(black friday|cyber monday|flash sale)\b',
         r'\b(newsletter|daily digest|breaking news|news alert|weekly roundup)\b',  # Newslettery
         r'\b(heute meistgelesen|meistgelesen|top stories|trending now)\b',  # News aggregators
@@ -44,6 +47,15 @@ class MarketingEmailDetector:
         r'@(mail\.|email\.|newsletter\.|promo\.)',
     ]
 
+    # Known newsletter/marketing domains (instant classification)
+    NEWSLETTER_DOMAINS = [
+        'aida.de', 'aidaline.de', 'kopp-report.de', 'kopp-verlag.de',
+        'bild.de', 'spiegel.de', 'focus.de', 'welt.de', 'zeit.de',
+        'backerupdate.com', 'kickstarter.com', 'indiegogo.com',
+        'easeus.com', 'abelssoft.net', 'deals.de', 'groupon',
+        'mailchi.mp', 'sendgrid.net', 'constantcontact.com',
+    ]
+
     # Unsubscribe indikátory
     UNSUBSCRIBE_PATTERNS = [
         r'unsubscribe',
@@ -52,6 +64,9 @@ class MarketingEmailDetector:
         r'remove from (this )?list',
         r'odhlásit',
         r'zrušit odběr',
+        r'abmelden',  # German unsubscribe
+        r'abbestellen',  # German cancel
+        r'vom newsletter abmelden',  # German unsubscribe from newsletter
         r'manage (your )?preferences',
         r'update (your )?preferences',
     ]
@@ -132,6 +147,18 @@ class MarketingEmailDetector:
         # Combined text for analysis
         combined_text = f"{subject} {body} {html_body}".lower()
 
+        # HIGHEST PRIORITY: Check known newsletter domains (instant classification)
+        _, email_addr = parseaddr(from_addr)
+        if email_addr and '@' in email_addr:
+            domain = email_addr.split('@')[1].lower()
+            if any(nl_domain in domain for nl_domain in self.NEWSLETTER_DOMAINS):
+                return True, 100, {
+                    'confidence': 100,
+                    'reasons': [f'Known newsletter domain: {domain}'],
+                    'is_whitelisted': False,
+                    'score_breakdown': {'newsletter_domain': 100}
+                }
+
         # 0. NOT-MARKETING check (důležité notifikace) - HIGHEST PRIORITY
         not_marketing_matches = len(self.not_marketing_regex.findall(combined_text))
         if not_marketing_matches > 0:
@@ -162,7 +189,7 @@ class MarketingEmailDetector:
         # 1. Analýza předmětu (25 bodů)
         subject_matches = len(self.subject_regex.findall(subject))
         if subject_matches > 0:
-            subject_score = min(25, subject_matches * 10)  # Zvýšeno z 8 na 10
+            subject_score = min(25, subject_matches * 15)  # Zvýšeno z 10 na 15 (2 matches = 30 bodů)
             score += subject_score
             reasons.append(f"Marketing keywords in subject: {subject_matches}")
 
@@ -216,8 +243,8 @@ class MarketingEmailDetector:
         # Normalizace skóre (nemůže být záporné ani přes 100)
         confidence = max(0, min(100, score))
 
-        # Rozhodnutí - threshold 40
-        is_marketing = confidence >= 40
+        # Rozhodnutí - threshold lowered to 25 (German marketing emails with 2 keywords = 25-30 points)
+        is_marketing = confidence >= 25
 
         details = {
             'confidence': confidence,
