@@ -1,0 +1,15 @@
+# LLM Scanner v2.1 Dependencies
+
+# Core dependencies
+requests>=2.31.0  # LLM API calls
+tqdm>=4.66.0      # Progress bar
+
+# v2.1: Resource monitoring
+psutil>=5.9.0     # CPU and memory monitoring
+
+# Built-in (no install needed)
+# - sqlite3 (database)
+# - mailbox (email parsing)
+# - email (MIME handling)
+# - threading (parallel processing)
+# - concurrent.futures (ThreadPoolExecutor)
